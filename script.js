@@ -78,3 +78,20 @@ const displayMovements = function (movements) {
   })
 }
 displayMovements(account1.movements)
+
+const createUsernames = function (accs) {
+  // we use foreach (not map) because we dont need return an array
+  accs.forEach(account => account.username = account.owner
+    .toLowerCase()
+    .split(' ')
+    .map(word => word[0])
+    .join(''));
+}
+createUsernames(accounts);
+console.log(accounts)
+
+
+
+
+
+// Filter method:
