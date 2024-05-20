@@ -79,6 +79,13 @@ const displayMovements = function (movements) {
 }
 displayMovements(account1.movements)
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+  labelBalance.textContent = `${balance} EUR`
+}
+calcDisplayBalance(account1.movements)
+
 const createUsernames = function (accs) {
   // we use foreach (not map) because we dont need return an array
   accs.forEach(account => account.username = account.owner
@@ -88,10 +95,3 @@ const createUsernames = function (accs) {
     .join(''));
 }
 createUsernames(accounts);
-console.log(accounts)
-
-
-
-
-
-// Filter method:
