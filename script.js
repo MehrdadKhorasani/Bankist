@@ -82,9 +82,21 @@ displayMovements(account1.movements)
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, cur) => acc + cur, 0);
 
-  labelBalance.textContent = `${balance} EUR`
+  labelBalance.textContent = `${balance}€`
 }
 calcDisplayBalance(account1.movements)
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, cur) => acc + cur, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements.filter(mov => mov < 0).reduce((acc, cur) => acc + cur, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  const interest = movements.filter(mov => mov > 0).map(mov => mov * 1.2 / 100).filter(int => int >= 1).reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+}
+calcDisplaySummary(account1.movements)
 
 const createUsernames = function (accs) {
   // we use foreach (not map) because we dont need return an array
